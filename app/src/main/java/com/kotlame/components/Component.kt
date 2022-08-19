@@ -8,6 +8,6 @@ abstract class Component {
     lateinit var gameObject: GameObject
 
     open fun initialize(): Unit? = null
-    open fun update(): Unit? = null
+    open fun update(deltaTime: Double): Unit? = null
     open fun draw(canvas: Canvas, paint: Paint?): Unit? = null
 }
