@@ -16,7 +16,19 @@ data class Vector2(var x: Float, var y: Float) {
     }
 
     val length get() = sqrt(lengthSquared)
-    val lengthSquared = x * x + y * y
+    val lengthSquared get() = x * x + y * y
+
+    fun normalize() {
+        if (abs(length) < 1e-10)
+            return
+
+        this /= length
+    }
+
+    inline val normalized
+        get() = copy().apply {
+            normalize()
+        }
 
     operator fun plus(other: Vector2) = Vector2(x + other.x, y + other.y)
     operator fun plusAssign(other: Vector2) {
