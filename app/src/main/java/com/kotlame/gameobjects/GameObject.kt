@@ -3,6 +3,8 @@ package com.kotlame.gameobjects
 import android.graphics.Canvas
 import android.graphics.Paint
 import com.kotlame.components.Component
+import com.kotlame.components.Transform
+import com.kotlame.math.Vector2
 
 class GameObject private constructor() {
     class Builder() {
@@ -12,10 +14,20 @@ class GameObject private constructor() {
             gameObject.addComponent(component)
         }
 
+        fun withPosition(position: Vector2) = apply {
+            gameObject.transform.position = position
+        }
+
+        fun withRotation(rotation: Float) = apply {
+            gameObject.transform.rotation = rotation
+        }
+
         fun build() = gameObject
     }
 
+    val transform = Transform()
     val components = arrayListOf<Component>()
+
     var destroyed = false
 
     fun addComponent(component: Component): Boolean {
