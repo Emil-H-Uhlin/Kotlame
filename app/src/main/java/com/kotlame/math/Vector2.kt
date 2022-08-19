@@ -24,7 +24,8 @@ data class Vector2(var x: Float, var y: Float) {
         if (abs(length) < 1e-10)
             return
 
-        this /= length
+        x /= length
+        y /= length
     }
 
     inline val normalized
@@ -33,28 +34,12 @@ data class Vector2(var x: Float, var y: Float) {
         }
 
     operator fun plus(other: Vector2) = Vector2(x + other.x, y + other.y)
-    operator fun plusAssign(other: Vector2) {
-        x += other.x
-        y += other.y
-    }
 
     operator fun times(value: Float) = Vector2(x * value, y * value)
-    operator fun timesAssign(value: Float) {
-        x *= value
-        y *= value
-    }
 
     operator fun div(value: Float) = Vector2(x / value, y / value)
-    operator fun divAssign(value: Float) {
-        x /= value
-        y /= value
-    }
 
     operator fun minus(other: Vector2) = Vector2(x - other.x, y - other.y)
-    operator fun minusAssign(other: Vector2) {
-        x -= other.x
-        y -= other.y
-    }
 
     operator fun unaryMinus() = Vector2(-x, -y)
 }
