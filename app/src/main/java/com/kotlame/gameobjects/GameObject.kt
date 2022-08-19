@@ -2,7 +2,7 @@ package com.kotlame.gameobjects
 
 import android.graphics.Canvas
 import android.graphics.Paint
-import com.kotlame.component.Component
+import com.kotlame.components.Component
 
 class GameObject private constructor() {
     class Builder() {

@@ -1,4 +1,4 @@
-package com.kotlame.component
+package com.kotlame.components
 
 import android.graphics.Canvas
 import android.graphics.Paint
