@@ -8,6 +8,15 @@ import kotlinx.coroutines.launch
 class Game(ctx: Context): SurfaceView(ctx) {
     @Volatile var running = false
 
+    var prevFrameTime: Long = -1
+
+    private val deltaTime get() = (System.currentTimeMillis() - prevFrameTime).toDouble() / 1000
+    private val scaledDeltaTime get() = deltaTime * timeScale;
+
+    companion object {
+        @JvmStatic var timeScale = 1.0f
+    }
+
     fun resume() = MainScope().launch {
         running = true
 
@@ -21,8 +30,11 @@ class Game(ctx: Context): SurfaceView(ctx) {
         running = false
     }
 
-    private fun update() {
-        
+    private fun update(deltaTime: Double = scaledDeltaTime) {
+
+        /* Put game logic */
+
+        prevFrameTime = System.currentTimeMillis()
     }
 
     private fun draw() {
@@ -30,11 +42,15 @@ class Game(ctx: Context): SurfaceView(ctx) {
 
         val canvas = holder.lockCanvas()
 
-        /* Draw your game objects */
+
+        /* Draw game objects */
+
 
         canvas.restore()
 
+
         /* Draw UI */
+
 
         holder.unlockCanvasAndPost(canvas)
     }
