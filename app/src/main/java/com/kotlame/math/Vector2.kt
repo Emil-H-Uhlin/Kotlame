@@ -13,6 +13,8 @@ data class Vector2(var x: Float, var y: Float) {
         val left = Vector2(-1, 0); get() = field.copy()
         val up = Vector2(0, -1); get() = field.copy()
         val down = Vector2(0, 1); get() = field.copy()
+
+        fun distance(vector: Vector2, other: Vector2) = (other - vector).length
     }
 
     val length get() = sqrt(lengthSquared)
