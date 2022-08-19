@@ -1,5 +1,8 @@
 package com.kotlame.math
 
+import kotlin.math.abs
+import kotlin.math.sqrt
+
 data class Vector2(var x: Float, var y: Float) {
     constructor(x: Number, y: Number): this(x.toFloat(), y.toFloat())
 
@@ -11,4 +14,9 @@ data class Vector2(var x: Float, var y: Float) {
         val up = Vector2(0, -1); get() = field.copy()
         val down = Vector2(0, 1); get() = field.copy()
     }
+
+    val length get() = sqrt(lengthSquared)
+    val lengthSquared = x * x + y * y
+
+    
 }
