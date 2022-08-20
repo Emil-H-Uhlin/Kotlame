@@ -35,9 +35,9 @@ data class Vector2(var x: Float, var y: Float) {
 
     operator fun plus(other: Vector2) = Vector2(x + other.x, y + other.y)
 
-    operator fun times(value: Float) = Vector2(x * value, y * value)
+    operator fun times(value: Number) = Vector2(x * value.toFloat(), y * value.toFloat())
 
-    operator fun div(value: Float) = Vector2(x / value, y / value)
+    operator fun div(value: Number) = Vector2(x / value.toFloat(), y / value.toFloat())
 
     operator fun minus(other: Vector2) = Vector2(x - other.x, y - other.y)
 
