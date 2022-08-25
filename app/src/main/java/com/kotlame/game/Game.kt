@@ -2,6 +2,7 @@ package com.kotlame.game
 
 import android.content.Context
 import android.view.SurfaceView
+import com.kotlame.gameobjects.GameObject
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
@@ -12,6 +13,8 @@ class Game(ctx: Context): SurfaceView(ctx) {
 
     private val deltaTime get() = (System.currentTimeMillis() - prevFrameTime).toDouble() / 1000
     private val scaledDeltaTime get() = deltaTime * timeScale;
+
+    private var gameObjects = listOf<GameObject>()
 
     companion object {
         @JvmStatic var timeScale = 1.0f
@@ -32,6 +35,9 @@ class Game(ctx: Context): SurfaceView(ctx) {
 
     private fun update(deltaTime: Double = scaledDeltaTime) {
 
+        gameObjects.forEach { it.update(deltaTime) }
+        gameObjects = gameObjects.filter { !it.destroyed }
+
         /* Put game logic */
 
         prevFrameTime = System.currentTimeMillis()
@@ -42,9 +48,7 @@ class Game(ctx: Context): SurfaceView(ctx) {
 
         val canvas = holder.lockCanvas()
 
-
-        /* Draw game objects */
-
+        gameObjects.forEach { it.draw(canvas, null) }
 
         canvas.restore()
 
